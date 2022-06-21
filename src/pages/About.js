@@ -18,10 +18,12 @@ export default class About extends Component {
         </div>
         <div className="split right">
           <div className="centered">
-            <div className="name_title">Your Name</div>
+            <div className="name_title">Dalia Etessami</div>
             <div className="brief_description">
-              Tell us about yourself in a few sentences. Tell us your interests
-              and say a fun fact about yourself.
+              Hi! I study Computer Science and Visual Arts at Columbia University.
+              This summer I have an internship designing marketing material for a small
+              business which I really enjoy!
+              I love creating art and making crafts like bracelets and shrinky dinks in my free time.
             </div>
           </div>
         </div>
@@ -29,3 +31,4 @@ export default class About extends Component {
     );
   }
 }
+

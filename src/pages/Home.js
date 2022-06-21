@@ -20,23 +20,44 @@ class Home extends Component {
     // This solution works for a small application but a more complex hashing function should be used when
     // dealing with a larger data sensitive project.
     todo.id = Math.random();
-    // Create a array that contains the current array and the new todo item
-    let new_list = [...this.state.todos, todo];
-    // Update the local state with the new array.
+    
+    let cur_todos = this.state.todos
+    let arraylength = this.state.todos.length
+    let cur_todos_content = []
+    for (let i = 0; i<arraylength; i++) {
+      cur_todos_content.push(cur_todos[i].content)
+    }
+
+    const contains = cur_todos_content.includes(todo.content)
+    if ( contains ) {
+      return
+    } else {
+      let new_list = [...this.state.todos, todo];
+      this.setState({
+        todos: new_list,
+      });
+    }
+  }
+
+  deleteTodo = (id) => {
+    const todos = this.state.todos.filter((todo) => {
+      return todo.id !== id;
+    });
     this.setState({
-      todos: new_list,
+      todos: todos,
     });
   };
+
   render() {
     return (
       <div className="Home">
-        <h1>Todo's </h1>
+        <div style={{padding: 20, fontSize: 40}}>Todo's </div>
         {/* When passing the AddTodo component, addTodo is a prop that is used in the 
         AddTodo.js file when handling the submit */}
         <AddTodo addTodo={this.addTodo} />
         {/* When returning the Todos component, todos is a prop passed to the todos.js file
          to format and render the current todo list state */}
-        <Todos todos={this.state.todos} />
+        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo}/>
       </div>
     );
   }
